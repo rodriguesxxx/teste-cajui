@@ -9,12 +9,14 @@ class DisciplinaAluno extends Model
 {
     use HasFactory;
     
-    protected string $table = 'disciplinas_alunos';
+    protected $table = 'disciplinas_alunos';
 
-    protected array $fillable = [
+    protected $fillable = [
+        'disciplina_id',
         'aluno_id',
-        'avaliacao_id',
-        'nota',
+        'data_inicio',
+        'data_fim',
+        'is_aprovado'
     ];
 
     public function disciplina()

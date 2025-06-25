@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('nome');
             $table->unsignedBigInteger('curso_id');
             $table->unsignedBigInteger('professor_id');
+            $table->tinyInteger(column: 'periodo');
             $table->text('ementa');
             $table->decimal('carga_horaria');
 

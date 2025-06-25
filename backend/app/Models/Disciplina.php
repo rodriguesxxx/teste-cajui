@@ -11,12 +11,13 @@ class Disciplina extends Model
 {
     use HasFactory;
 
-    protected string $table = 'disciplinas';
+    protected $table = 'disciplinas';
 
-    protected array $fillable = [
+    protected $fillable = [
         'nome',
         'curso_id',
         'professor_id',
+        'periodo',
         'ementa',
         'carga_horaria',
     ];

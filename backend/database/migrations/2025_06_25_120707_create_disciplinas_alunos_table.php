@@ -12,7 +12,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('disciplina_id');
             $table->unsignedBigInteger(column: 'aluno_id');
-            $table->tinyInteger(column: 'periodo');
             $table->date(column: 'data_inicio');
             $table->date(column: 'data_fim');
             $table->boolean('is_aprovado')->default(false);

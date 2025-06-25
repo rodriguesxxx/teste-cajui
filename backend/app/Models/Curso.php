@@ -10,9 +10,9 @@ class Curso extends Model
 {
     use HasFactory;
 
-    protected string $table = 'cursos';
+    protected $table = 'cursos';
 
-    protected array $fillable = [
+    protected $fillable = [
         'nome',
         'nivel',
     ];

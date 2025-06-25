@@ -10,9 +10,9 @@ class Nota extends Model
 {
     use HasFactory;
     
-    protected string $table = 'notas';
+    protected $table = 'notas';
 
-    protected array $fillable = [
+    protected $fillable = [
         'aluno_id',
         'avaliacao_id',
         'nota',

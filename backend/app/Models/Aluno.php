@@ -11,9 +11,9 @@ class Aluno extends Model
 {
     use HasFactory;
     
-    protected string $table = 'alunos';
+    protected $table = 'alunos';
 
-    protected array $fillable = [
+    protected $fillable = [
         'user_id',
         'matricula',
     ];

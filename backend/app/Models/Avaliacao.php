@@ -11,9 +11,9 @@ class Avaliacao extends Model
 {
     use HasFactory;
     
-    protected string $table = 'avaliacoes';
+    protected $table = 'avaliacoes';
 
-    protected array $fillable = [
+    protected $fillable = [
         'titulo',
         'disciplina_id',
         'data',

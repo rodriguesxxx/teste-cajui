@@ -36,4 +36,9 @@ class Disciplina extends Model
     {
         return $this->belongsToMany(Aluno::class, 'disciplinas_alunos', 'disciplina_id', 'aluno_id');
     }
+
+    public function isAluno(Aluno $aluno): bool
+    {
+        return $this->alunos()->where('aluno_id', $aluno->id)->exists();
+    }
 }

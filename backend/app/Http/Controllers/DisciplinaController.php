@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Facades\Response;
 use App\Models\Disciplina;
 use App\Services\IDisciplinaService;
+use App\Transformers\Collections\AvaliacaoAlunoResourceCollection;
+use App\Transformers\DisciplinaResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +34,7 @@ class DisciplinaController extends Controller
 
         return  Response::success()
             ->message("Disciplinas listadas com sucesso!")
-            ->data($disciplinas)
+            ->data(DisciplinaResource::collection($disciplinas))
             ->send();
     }
 
@@ -42,7 +44,17 @@ class DisciplinaController extends Controller
 
         return  Response::success()
             ->message("Disciplina retornada com sucesso!")
-            ->data($disciplina)
+            ->data(DisciplinaResource::make($disciplina))
+            ->send();
+    }
+
+    public function showAvaliacoesAluno(Request $request, Disciplina $disciplina): JsonResponse
+    {
+        $avaliacoes = $this->disciplinaService->listarAvaliacoesAlunoPorDisciplina($disciplina, Auth::user());
+
+        return  Response::success()
+            ->message("Avaliações listadas com sucesso!")
+            ->data(AvaliacaoAlunoResourceCollection::make($avaliacoes, Auth::user()->aluno()))
             ->send();
     }
 }

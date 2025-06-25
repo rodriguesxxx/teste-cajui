@@ -25,9 +25,7 @@ class DisciplinaService implements IDisciplinaService
 
     public function getDisciplinaAluno(Disciplina $disciplina, User $user): Disciplina
     {
-        $aluno = $user->aluno();
-
-        $this->canVisualizarDisciplinaAluno($disciplina, $aluno);
+        $this->canVisualizarDisciplinaAluno($disciplina, $user->aluno());
 
         try {
             return $disciplina;
@@ -35,6 +33,18 @@ class DisciplinaService implements IDisciplinaService
             throw new DisciplinaException("Erro interno ao listar disciplinas!");    
         }  
     }
+
+    public function listarAvaliacoesAlunoPorDisciplina(Disciplina $disciplina, User $user): Collection
+    {
+        $this->canVisualizarDisciplinaAluno($disciplina, $user->aluno());
+
+        try {
+            return $disciplina->avaliacoes()->get();
+        } catch(\Exception) {
+            throw new DisciplinaException("Erro interno ao listar avaliações!");    
+        }  
+    }
+
 
     private function canListarDisciplinasAluno(?Aluno $aluno): void
     {

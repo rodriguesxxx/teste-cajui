@@ -11,4 +11,6 @@ interface IDisciplinaService
     public function listarDisciplinasAluno(User $user): Collection;
 
     public function getDisciplinaAluno(Disciplina $disciplina, User $user): Disciplina;
+    
+    public function listarAvaliacoesAlunoPorDisciplina(Disciplina $disciplina, User $user): Collection;
 }

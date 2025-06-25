@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Disciplina extends Model
 {
@@ -35,6 +36,11 @@ class Disciplina extends Model
     public function alunos(): BelongsToMany
     {
         return $this->belongsToMany(Aluno::class, 'disciplinas_alunos', 'disciplina_id', 'aluno_id');
+    }
+
+    public function avaliacoes(): HasMany
+    {
+        return $this->hasMany(Avaliacao::class);
     }
 
     public function isAluno(Aluno $aluno): bool

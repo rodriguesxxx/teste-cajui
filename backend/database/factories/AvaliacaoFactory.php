@@ -15,7 +15,8 @@ class AvaliacaoFactory extends Factory
         return [
             'titulo' => $this->faker->word(),
             'disciplina_id' => Disciplina::pluck('id')->random(),
-            'data' => $this->faker->date()
+            'data' => $this->faker->date(),
+            'nota_maxima' => $this->faker->numberBetween(0, 25),
         ];
     }
 }

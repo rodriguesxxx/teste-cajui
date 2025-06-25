@@ -32,4 +32,9 @@ class Aluno extends Model
     {
         return $this->belongsToMany(Disciplina::class, 'disciplinas_alunos', 'aluno_id', 'disciplina_id');
     }
+
+    public function nota_avaliacao(int $avaliacao_id): Nota|null
+    {
+        return $this->notas()->where('avaliacao_id', $avaliacao_id)->first();
+    }
 }

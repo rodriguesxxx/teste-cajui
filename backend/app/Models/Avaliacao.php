@@ -17,6 +17,7 @@ class Avaliacao extends Model
         'titulo',
         'disciplina_id',
         'data',
+        'nota_maxima'
     ];
 
     public function disciplina(): BelongsTo

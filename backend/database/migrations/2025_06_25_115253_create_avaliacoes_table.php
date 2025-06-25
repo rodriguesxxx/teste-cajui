@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->unsignedBigInteger('disciplina_id');
             $table->date('data');
+            $table->decimal('nota_maxima');
             $table->timestamps();
         });
     }

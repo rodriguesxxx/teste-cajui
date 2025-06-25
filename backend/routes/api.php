@@ -18,6 +18,7 @@ Route::prefix('/v1')->group(function (): void {
         Route::controller(DisciplinaController::class)->prefix('/disciplinas')->group(function () {
             Route::get('/', 'indexDisciplinasAluno');
             Route::get('/{disciplina}', 'showDisciplinaAluno');
+            Route::get('/{disciplina}/avaliacoes', 'showAvaliacoesAluno');
         });
     });
 });

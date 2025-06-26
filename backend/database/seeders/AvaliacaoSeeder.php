@@ -9,6 +9,6 @@ class AvaliacaoSeeder extends Seeder
 {
     public function run(): void
     {
-        Avaliacao::factory(20)->create();
+        Avaliacao::factory(count: 30)->create();
     }
 }

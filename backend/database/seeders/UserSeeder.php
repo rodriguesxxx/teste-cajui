@@ -11,15 +11,35 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'Daniel Professor',
-            'email' => 'professor@ifnmg.edu.br',
-            'password' => Hash::make('professor@cajui')
+            'name' => 'Daniel Rodrigues',
+            'email' => 'drp6@aluno.ifnmg.edu.br',
+            'password' => Hash::make('aluno@cajui')
         ]);
 
         User::factory()->create([
-            'name' => 'Daniel Aluno',
-            'email' => 'daniel@aluno.ifnmg.edu.br',
-            'password' => Hash::make('aluno@cajui')
+            'name' => 'Alan T. Oliveira',
+            'email' => 'alan.oliveira@ifnmg.edu.br',
+            'password' => Hash::make('prof@cajui')
+        ]);
+
+        User::factory()->create([
+            'name' => 'Marco Aurelio',
+        ]);
+
+        User::factory()->create([
+            'name' => 'Leonan Teixeira de Oliveira',
+        ]);
+
+        User::factory()->create([
+            'name' => 'Marcos Vinicius Montanari',
+        ]);
+
+        User::factory()->create([
+            'name' => 'Marcos Vinicius Montanari',
+        ]);
+
+        User::factory()->create([
+            'name' => 'Suzana Viana Mota',
         ]);
     }
 }

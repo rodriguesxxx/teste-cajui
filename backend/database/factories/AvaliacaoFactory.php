@@ -13,10 +13,10 @@ class AvaliacaoFactory extends Factory
     public function definition(): array
     {
         return [
-            'titulo' => $this->faker->word(),
+            'titulo' => 'Prova ' . $this->faker->numberBetween(1, 10),
             'disciplina_id' => Disciplina::pluck('id')->random(),
-            'data' => $this->faker->date(),
-            'nota_maxima' => $this->faker->numberBetween(0, 25),
+            'data' => $this->faker->dateTimeBetween('2025-01-01', '2025-12-31')->format('Y-m-d'),
+            'nota_maxima' => 10,
         ];
     }
 }

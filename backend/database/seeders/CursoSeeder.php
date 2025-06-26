@@ -9,6 +9,8 @@ class CursoSeeder extends Seeder
 {
     public function run(): void
     {
-        Curso::factory(5)->create();
+        Curso::factory()->create([
+            'nome' => 'Análise e Desenvolvimento de Sistemas'
+        ]);
     }
 }

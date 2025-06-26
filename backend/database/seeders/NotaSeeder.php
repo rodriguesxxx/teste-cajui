@@ -9,6 +9,6 @@ class NotaSeeder extends Seeder
 {
     public function run(): void
     {
-        Nota::factory(50)->create();
+        Nota::factory(60)->create();
     }
 }

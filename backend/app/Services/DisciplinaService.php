@@ -40,7 +40,7 @@ class DisciplinaService implements IDisciplinaService
         $this->canVisualizarDisciplinaAluno($disciplina, $user->aluno());
 
         try {
-            return $disciplina->avaliacoes()->get();
+            return $disciplina->avaliacoes()->orderBy('data')->get();
         } catch(\Exception) {
             throw new DisciplinaException("Erro interno ao listar avaliações!");    
         }  

@@ -16,7 +16,7 @@ class NotaFactory extends Factory
         return [
             'aluno_id' => Aluno::pluck('id')->random(),
             'avaliacao_id' => Avaliacao::pluck('id')->random(),
-            'nota' => $this->faker->numberBetween(0, 25),
+            'nota' => $this->faker->numberBetween(0, int2: 10),
         ];
     }
 }

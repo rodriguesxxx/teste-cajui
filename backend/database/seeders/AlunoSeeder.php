@@ -9,6 +9,8 @@ class AlunoSeeder extends Seeder
 {
     public function run(): void
     {
-        Aluno::factory(count: 40)->create();
+        Aluno::factory()->create([
+            'user_id' => 1
+        ]);
     }
 }

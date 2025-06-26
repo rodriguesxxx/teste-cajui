@@ -14,12 +14,18 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
+             /**
+             * @example drp6@aluno.ifnmg.edu.br
+             */
             'email' => [
                 'required',
                 'email',
                 'exists:users,email',
                 'regex:/@(ifnmg\.edu\.br|aluno\.ifnmg\.edu\.br)$/i'
             ],
+            /**
+             * @example aluno@cajui
+             */
             'password' => 'required|string',
         ];
     }

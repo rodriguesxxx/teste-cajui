@@ -11,6 +11,21 @@ class DisciplinaSeeder extends Seeder
 
     public function run(): void
     {
-        Disciplina::factory(10)->create();
+        $disciplinas = [
+            'Arquitetura e Organização de Computadores', 
+            'Lógica Matemática', 
+            'Matemática Aplicada', 
+            'Programação e Algoritmos', 
+            'Algoritmos e Estruturas de Dados', 
+            'Banco de Dados I', 
+            'Engenharia de Software', 
+            'Banco de Dados II', 
+            'Programação Orientada a Objetos', 
+            'Programação Web I'
+        ];
+
+        foreach($disciplinas as $disciplina) {
+            Disciplina::factory()->create(['nome' => $disciplina]);
+        }
     }
 }

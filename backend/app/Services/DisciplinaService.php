@@ -14,53 +14,23 @@ class DisciplinaService implements IDisciplinaService
     public function listarDisciplinasAluno(User $user): Collection
     {
         $aluno = $user->aluno();
-
         $this->canListarDisciplinasAluno($aluno);
 
-        try {
-            return $aluno->disciplinas()->get();
-        } catch(\Exception) {
-            throw new DisciplinaException("Erro interno ao listar disciplinas!");    
-        }
+        return $aluno->disciplinas()->get();
     }
 
     public function getDisciplinaAluno(Disciplina $disciplina, User $user): Disciplina
     {
         $this->canVisualizarDisciplinaAluno($disciplina, $user->aluno());
 
-        try {
-            return $disciplina;
-        } catch(\Exception) {
-            throw new DisciplinaException("Erro interno ao listar disciplinas!");    
-        }  
+        return $disciplina;
     }
 
     public function listarAvaliacoesAlunoPorDisciplina(Disciplina $disciplina, User $user): Collection
     {
         $this->canVisualizarDisciplinaAluno($disciplina, $user->aluno());
 
-        try {
-            return $disciplina->avaliacoes()->orderBy('data')->get();
-        } catch(\Exception) {
-            throw new DisciplinaException("Erro interno ao listar avaliações!");    
-        }  
-    }
-
-
-    private function canListarDisciplinasAluno(?Aluno $aluno): void
-    {
-        if(is_null($aluno)) {
-            throw new DisciplinaException("Aluno não encontrado ou não existe!");    
-        }
-    }
-
-    private function canVisualizarDisciplinaAluno(Disciplina $disciplina, ?Aluno $aluno): void
-    {
-        $this->canListarDisciplinasAluno($aluno);
-
-        if(!$disciplina->isAluno($aluno)) {
-            throw new DisciplinaException("A disciplina informada não pertence ao aluno!");    
-        }
+        return $disciplina->avaliacoes()->orderBy('data')->get();
     }
 
     public function calcularMediaAluno(Disciplina $disciplina, User $user): float
@@ -74,5 +44,21 @@ class DisciplinaService implements IDisciplinaService
         }, 0);
 
         return $notas / $avaliacoes->count();
+    }
+
+    private function canListarDisciplinasAluno(?Aluno $aluno): void
+    {
+        if (is_null($aluno)) {
+            throw new DisciplinaException("Aluno não encontrado ou não existe!");
+        }
+    }
+
+    private function canVisualizarDisciplinaAluno(Disciplina $disciplina, ?Aluno $aluno): void
+    {
+        $this->canListarDisciplinasAluno($aluno);
+
+        if (!$disciplina->hasAluno($aluno)) {
+            throw new DisciplinaException("A disciplina informada não pertence ao aluno!");
+        }
     }
 }

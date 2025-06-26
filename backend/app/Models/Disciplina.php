@@ -43,7 +43,7 @@ class Disciplina extends Model
         return $this->hasMany(Avaliacao::class);
     }
 
-    public function isAluno(Aluno $aluno): bool
+    public function hasAluno(Aluno $aluno): bool
     {
         return $this->alunos()->where('aluno_id', $aluno->id)->exists();
     }

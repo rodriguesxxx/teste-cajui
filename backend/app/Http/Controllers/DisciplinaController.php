@@ -22,7 +22,7 @@ class DisciplinaController extends Controller
     {
         $disciplinas = Disciplina::all();
 
-        return  Response::success()
+        return Response::success()
             ->message("Disciplinas listadas com sucesso!")
             ->data($disciplinas)
             ->send();
@@ -32,7 +32,7 @@ class DisciplinaController extends Controller
     {
         $disciplinas = $this->disciplinaService->listarDisciplinasAluno(Auth::user());
 
-        return  Response::success()
+        return Response::success()
             ->message("Disciplinas listadas com sucesso!")
             ->data(DisciplinaResource::collection($disciplinas))
             ->send();
@@ -42,7 +42,7 @@ class DisciplinaController extends Controller
     {
         $disciplina = $this->disciplinaService->getDisciplinaAluno($disciplina, Auth::user());
 
-        return  Response::success()
+        return Response::success()
             ->message("Disciplina retornada com sucesso!")
             ->data(DisciplinaResource::make($disciplina))
             ->send();
@@ -52,7 +52,7 @@ class DisciplinaController extends Controller
     {
         $avaliacoes = $this->disciplinaService->listarAvaliacoesAlunoPorDisciplina($disciplina, Auth::user());
 
-        return  Response::success()
+        return Response::success()
             ->message("Avaliações listadas com sucesso!")
             ->data(AvaliacaoAlunoResourceCollection::make($avaliacoes, Auth::user()->aluno()))
             ->send();
@@ -62,7 +62,7 @@ class DisciplinaController extends Controller
     {
         $media = $this->disciplinaService->calcularMediaAluno($disciplina, Auth::user());
         
-        return  Response::success()
+        return Response::success()
             ->message("Avaliações listadas com sucesso!")
             ->data(['media' => $media])
             ->send();   

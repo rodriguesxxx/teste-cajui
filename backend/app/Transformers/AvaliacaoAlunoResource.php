@@ -14,13 +14,6 @@ class AvaliacaoAlunoResource extends JsonResource
         parent::__construct($resource);
     }
 
-    public static function collectionWithAluno($resource, Aluno $aluno)
-    {
-        return collect($resource)->map(function ($avaliacao) use ($aluno) {
-            return new static($avaliacao, $aluno);
-        });
-    }
-
     public function toArray(Request $request): array
     {
         $notaAluno = $this->aluno->nota_avaliacao($this->id);

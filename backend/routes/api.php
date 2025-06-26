@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DisciplinaController;
+use App\Http\Controllers\PerfilController;
 use App\Http\Middleware\JwtMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,10 @@ Route::prefix('/v1')->group(function (): void {
         });
 
     Route::middleware(JwtMiddleware::class)->prefix('/aluno')->group(function () {
+        Route::controller(PerfilController::class)->prefix('/perfil')->group(function () {
+            Route::get('/', 'me');
+        });
+
         Route::controller(DisciplinaController::class)->prefix('/disciplinas')->group(function () {
             Route::get('/', 'indexDisciplinasAluno');
             Route::get('/{disciplina}', 'showDisciplinaAluno');

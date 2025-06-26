@@ -9,6 +9,9 @@ import "react-native-reanimated";
 import NotFoundScreen from "./+not-found";
 import HomeScreen from "./home";
 import LoginScreen from "./login";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 export default function RootLayout() {
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -36,12 +39,14 @@ export default function RootLayout() {
     const Stack = createNativeStackNavigator();
 
     return (
-        <ThemeProvider value={DefaultTheme}>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-                <Stack.Screen name='login' component={LoginScreen} />
-                <Stack.Screen name='home' component={HomeScreen} />
-                <Stack.Screen name='+not-found' component={NotFoundScreen} />
-            </Stack.Navigator>
-        </ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+            <ThemeProvider value={DefaultTheme}>
+                <Stack.Navigator screenOptions={{ headerShown: false }}>
+                    <Stack.Screen name='login' component={LoginScreen} />
+                    <Stack.Screen name='home' component={HomeScreen} />
+                    <Stack.Screen name='+not-found' component={NotFoundScreen} />
+                </Stack.Navigator>
+            </ThemeProvider>
+        </QueryClientProvider>
     );
 }

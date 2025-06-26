@@ -2,6 +2,7 @@ import { getAvaliacoes } from "@/api/aluno";
 import { AvaliacoesType } from "@/types/aluno";
 import { formatDate, formatDecimal } from "@/utils/formatUtils";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -10,20 +11,12 @@ type Props = {
 };
 
 export function TabelaAvaliacoes({ disciplina }: Props) {
-    const [avaliacoes, setAvaliacoes] = useState<AvaliacoesType[]>([]);
+    const { data: avaliacoes = [] } = useQuery<AvaliacoesType[]>({
+        queryKey: ["avaliacoes", disciplina],
+        queryFn: () => getAvaliacoes(disciplina).then(r => r.data),
+        staleTime: Infinity,
+    });
 
-    useEffect(() => {
-        const fetchAvaliacoes = async () => {
-            try {
-                const response = await getAvaliacoes(disciplina);
-                setAvaliacoes(response.data);
-            } catch (e) {
-                // Alert.alert("Erro", "Não foi possível carregar as avaliações.");
-            }
-        };
-
-        fetchAvaliacoes();
-    }, [disciplina]);
     return (
         <View style={styles.table}>
             

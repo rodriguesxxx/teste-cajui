@@ -33,7 +33,7 @@ export function CardDisciplina({ disciplina }: Props) {
                     </TouchableOpacity>
                     <Text style={styles.sectionTitle}>Avaliações:</Text>
                     <TabelaAvaliacoes disciplina={disciplina.id} />
-                    <MediaCard disciplina={disciplina.id}/>
+                    <MediaCard disciplina={disciplina.id} />
                 </View>
             )}
         </View>
@@ -46,7 +46,9 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         borderRadius: 8,
         padding: 10,
-        elevation: 2,
+        elevation: 3,
+        borderWidth: 1,
+        borderColor: "#ddd",
     },
     disciplinaHeader: {
         padding: 10,

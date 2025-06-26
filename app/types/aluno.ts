@@ -4,3 +4,17 @@ export type InfoAlunoType = {
     email: string;
     matricula: string;
 };
+
+export type DisciplinaType = {
+    id: number;
+    nome: string;
+    professor: string;
+};
+
+export type AvaliacoesType = {
+    id: number;
+    titulo: string;
+    data: string;
+    notaMaxima: number;
+    nota: number;
+};

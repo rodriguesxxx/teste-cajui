@@ -1,16 +1,12 @@
 import { Aluno } from "@/components/Aluno";
 import { Disciplinas } from "@/components/Disciplinas";
-import { StyleSheet } from "react-native";
-
-import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView, StyleSheet } from "react-native";
 
 export default function HomeScreen() {
     return (
-        <SafeAreaView>
+        <ScrollView contentContainerStyle={{ padding: 16 }}>
             <Aluno />
             <Disciplinas />
-        </SafeAreaView>
+        </ScrollView>
     );
 }
-
-const styles = StyleSheet.create({});

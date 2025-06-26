@@ -1,26 +1,36 @@
+import { getDisciplinas } from "@/api/aluno";
+import { DisciplinaType } from "@/types/aluno";
+import { useEffect, useState } from "react";
+import { Alert } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { Card } from "./Card";
 import { CardDisciplina } from "./CardDisciplina";
 
-export type DisciplinaType = {
-    id: string;
-    nome: string;
-    professor: string;
-};
-
-const disciplinas: DisciplinaType[] = [
-    { id: "6638", nome: "Arquitetura e Organização de Computadores", professor: "Marco Aurelio Madureira de Carvalho" },
-    { id: "6634", nome: "Lógica Matemática", professor: "Alan Teixeira de Oliveira" },
-    { id: "6623", nome: "Programação e Algoritmos", professor: "Leonan Teixeira de Oliveira" },
-];
-
 export function Disciplinas() {
+    const [disciplinas, setDisciplinas] = useState<DisciplinaType[]>([]);
+
+    useEffect(() => {
+        const fetchDisciplinas = async () => {
+            try {
+                const response = await getDisciplinas();
+                setDisciplinas(response.data);
+            } catch (e) {
+                // Alert.alert("Erro", "Não foi possível carregar as disciplinas.");
+            }
+        };
+
+        fetchDisciplinas();
+    }, []);
+
     return (
         <Card title='Disciplinas em curso'>
             <FlatList
                 data={disciplinas}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }: { item: DisciplinaType }) => <CardDisciplina disciplina={item} />}
+                contentContainerStyle={{ paddingBottom: 16 }}
+                scrollEnabled={false}
+                nestedScrollEnabled={true}
             />
         </Card>
     );

@@ -1,5 +1,5 @@
 import { logout } from "@/api/auth";
-import { getInfoAluno } from "@/api/perfil";
+import { getInfoAluno } from "@/api/aluno";
 import { InfoAlunoType } from "@/types/aluno";
 import { RootStackParamList } from "@/types/navigation";
 import AsyncStorage from "@react-native-async-storage/async-storage";

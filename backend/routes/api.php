@@ -25,6 +25,7 @@ Route::prefix('/v1')->group(function (): void {
             Route::get('/', 'indexDisciplinasAluno');
             Route::get('/{disciplina}', 'showDisciplinaAluno');
             Route::get('/{disciplina}/avaliacoes', 'showAvaliacoesAluno');
+            Route::get('/{disciplina}/media', 'showMediaAluno');
         });
     });
 });

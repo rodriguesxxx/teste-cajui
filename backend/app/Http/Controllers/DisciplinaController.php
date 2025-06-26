@@ -57,4 +57,14 @@ class DisciplinaController extends Controller
             ->data(AvaliacaoAlunoResourceCollection::make($avaliacoes, Auth::user()->aluno()))
             ->send();
     }
+
+    public function showMediaAluno(Request $request, Disciplina $disciplina): JsonResponse
+    {
+        $media = $this->disciplinaService->calcularMediaAluno($disciplina, Auth::user());
+        
+        return  Response::success()
+            ->message("Avaliações listadas com sucesso!")
+            ->data(['media' => $media])
+            ->send();   
+    }
 }

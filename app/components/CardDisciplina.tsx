@@ -3,12 +3,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { TabelaAvaliacoes } from "./TabelaAvaliacoes";
+import { MediaCard } from "./CardMedia";
 
-type CardDisciplinaProps = {
+type Props = {
     disciplina: DisciplinaType;
 };
 
-export function CardDisciplina({ disciplina }: CardDisciplinaProps) {
+export function CardDisciplina({ disciplina }: Props) {
     const [expanded, setExpanded] = useState(false);
 
     return (
@@ -32,6 +33,7 @@ export function CardDisciplina({ disciplina }: CardDisciplinaProps) {
                     </TouchableOpacity>
                     <Text style={styles.sectionTitle}>Avaliações:</Text>
                     <TabelaAvaliacoes disciplina={disciplina.id} />
+                    <MediaCard disciplina={disciplina.id}/>
                 </View>
             )}
         </View>
@@ -76,7 +78,6 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 14,
     },
-
     sectionTitle: {
         fontWeight: "bold",
         marginTop: 8,

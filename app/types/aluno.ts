@@ -15,6 +15,10 @@ export type AvaliacoesType = {
     id: number;
     titulo: string;
     data: string;
-    notaMaxima: number;
+    nota_maxima: number;
     nota: number;
+};
+
+export type MediaType = {
+    media: number
 };

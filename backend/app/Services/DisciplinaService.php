@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Exceptions\DisciplinaException;
 use App\Models\Aluno;
+use App\Models\Avaliacao;
 use App\Models\Disciplina;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -60,5 +61,18 @@ class DisciplinaService implements IDisciplinaService
         if(!$disciplina->isAluno($aluno)) {
             throw new DisciplinaException("A disciplina informada não pertence ao aluno!");    
         }
+    }
+
+    public function calcularMediaAluno(Disciplina $disciplina, User $user): float
+    {
+        $avaliacoes = $this->listarAvaliacoesAlunoPorDisciplina($disciplina, $user);
+        $aluno = $user->aluno();
+
+        $notas = $avaliacoes->reduce(function ($carry, Avaliacao $avaliacao) use ($aluno) {
+            $nota = (float) ($aluno->nota_avaliacao($avaliacao->id)->nota ?? 0);
+            return $carry + $nota;
+        }, 0);
+
+        return $notas / $avaliacoes->count();
     }
 }

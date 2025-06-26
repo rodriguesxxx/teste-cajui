@@ -1,19 +1,33 @@
+import { getAvaliacoes } from "@/api/aluno";
 import { AvaliacoesType } from "@/types/aluno";
-import React from "react";
+import { formatDate, formatDecimal } from "@/utils/formatUtils";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-
-const avaliacoes: AvaliacoesType[] = [
-    { id: 1, titulo: "Teste", data: "22/10/21", notaMaxima: 20, nota: 20 },
-    { id: 1, titulo: "Teste 2", data: "23/10/21", notaMaxima: 20, nota: 15 },
-];
 
 type Props = {
     disciplina: number;
 };
 
 export function TabelaAvaliacoes({ disciplina }: Props) {
+    const [avaliacoes, setAvaliacoes] = useState<AvaliacoesType[]>([]);
+
+    useEffect(() => {
+        const fetchAvaliacoes = async () => {
+            try {
+                const response = await getAvaliacoes(disciplina);
+                setAvaliacoes(response.data);
+            } catch (e) {
+                // Alert.alert("Erro", "Não foi possível carregar as avaliações.");
+            }
+        };
+
+        fetchAvaliacoes();
+    }, [disciplina]);
     return (
         <View style={styles.table}>
+            
+
             <View style={[styles.tableRow, styles.tableHeader]}>
                 <Text style={[styles.cell, styles.col0]}>#</Text>
                 <Text style={[styles.cell, styles.col1]}>Avaliação</Text>
@@ -26,9 +40,9 @@ export function TabelaAvaliacoes({ disciplina }: Props) {
                 <View key={index} style={styles.tableRow}>
                     <Text style={[styles.cell, styles.col0]}>{index + 1}</Text>
                     <Text style={[styles.cell, styles.col1]}>{avaliacao.titulo}</Text>
-                    <Text style={[styles.cell, styles.col2]}>{avaliacao.data}</Text>
-                    <Text style={[styles.cell, styles.col3]}>{avaliacao.notaMaxima}</Text>
-                    <Text style={[styles.cell, styles.col4]}>{avaliacao.nota}</Text>
+                    <Text style={[styles.cell, styles.col2]}>{formatDate(avaliacao.data)}</Text>
+                    <Text style={[styles.cell, styles.col3]}>{formatDecimal(avaliacao.nota_maxima)}</Text>
+                    <Text style={[styles.cell, styles.col4]}>{formatDecimal(avaliacao.nota)}</Text>
                 </View>
             ))}
 
@@ -39,6 +53,8 @@ export function TabelaAvaliacoes({ disciplina }: Props) {
                 <Text style={[styles.cell, styles.col3]}>30</Text>
                 <Text style={[styles.cell, styles.col4]}>30</Text>
             </View>
+
+            
         </View>
     );
 }

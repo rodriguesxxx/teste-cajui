@@ -12,6 +12,7 @@ Route::prefix('/v1')->group(function (): void {
         ->prefix('/auth')
         ->group(function () {
             Route::post('/login', 'login');
+            Route::post('/logout', 'logout')->middleware(JwtMiddleware::class);
         });
 
     Route::middleware(JwtMiddleware::class)->prefix('/aluno')->group(function () {

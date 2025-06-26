@@ -2,6 +2,7 @@ import { getMedia } from "@/api/aluno";
 import { MediaType } from "@/types/aluno";
 import { formatDecimal } from "@/utils/formatUtils";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -10,24 +11,18 @@ type Props = {
 };
 
 export function MediaCard({ disciplina }: Props) {
+    const { data: media = 0 } = useQuery<number>({
+        queryKey: ["media", disciplina],
+        queryFn: async () => {
+            const response = await getMedia(disciplina);
+            return response.data.media;
+        },
+        staleTime: Infinity,
+    });
 
-    const [media, setMedia] = useState<number>(0);
-
-    useEffect(() => {
-        const fetchMedia = async () => {
-            try {
-                const response = await getMedia(disciplina);
-                setMedia(response.data.media);
-            } catch (e) {
-                // Alert.alert("Erro", "Não foi possível carregar a média.");
-            }
-        }
-        
-        fetchMedia();
-     }, [disciplina]);
     return (
         <View style={styles.mediaContainer}>
-            <MaterialCommunityIcons name="star-circle" size={32} color="#FFD700" style={{ marginRight: 8 }} />
+            <MaterialCommunityIcons name='star-circle' size={32} color='#FFD700' style={{ marginRight: 8 }} />
             <Text style={styles.mediaText}>
                 Sua média nesta disciplina: <Text style={styles.mediaValue}>{formatDecimal(media)}</Text>
             </Text>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { TabelaAvaliacoes } from "./TabelaAvaliacoes";
 import { MediaCard } from "./CardMedia";
+import { DialogInformacoes } from "./DialogInformacoes";
 
 type Props = {
     disciplina: DisciplinaType;
@@ -11,6 +12,7 @@ type Props = {
 
 export function CardDisciplina({ disciplina }: Props) {
     const [expanded, setExpanded] = useState(false);
+    const [dialogVisible, setDialogVisible] = useState(false);
 
     return (
         <View style={styles.card}>
@@ -21,12 +23,18 @@ export function CardDisciplina({ disciplina }: Props) {
                 </View>
             </TouchableOpacity>
 
+            <DialogInformacoes
+                visible={dialogVisible}
+                onClose={() => setDialogVisible(false)}
+                disciplina={disciplina}
+            />
+
             {expanded && (
                 <View style={styles.detailsContainer}>
                     <TouchableOpacity
                         style={styles.ementaButton}
                         onPress={() => {
-                            /* abrir ementa */
+                            setDialogVisible(true);
                         }}>
                         <MaterialIcons name='description' size={16} color='#fff' style={{ marginRight: 6 }} />
                         <Text style={styles.ementaButtonText}>Informações</Text>

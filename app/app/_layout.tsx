@@ -9,8 +9,7 @@ import "react-native-reanimated";
 import NotFoundScreen from "./+not-found";
 import HomeScreen from "./home";
 import LoginScreen from "./login";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 export default function RootLayout() {

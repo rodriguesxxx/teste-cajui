@@ -9,6 +9,10 @@ export type DisciplinaType = {
     id: number;
     nome: string;
     professor: string;
+    curso: string;
+    ementa: string;
+    periodo: number;
+    carga_horaria: number;
 };
 
 export type AvaliacoesType = {
@@ -20,5 +24,5 @@ export type AvaliacoesType = {
 };
 
 export type MediaType = {
-    media: number
+    media: number;
 };

@@ -8,3 +8,7 @@ export function formatDate(dateStr: string): string {
 export function formatDecimal(value: number | string) {
     return Number(value).toFixed(1);
 }
+
+export function formatInteger(value: number | string) {
+    return Math.trunc(Number(value));
+}

@@ -1,5 +1,6 @@
 import { getAvaliacoes } from "@/api/aluno";
 import { AvaliacoesType } from "@/types/aluno";
+import { sumField } from "@/utils/calcUtils";
 import { formatDate, formatDecimal } from "@/utils/formatUtils";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useQuery } from "@tanstack/react-query";
@@ -13,14 +14,15 @@ type Props = {
 export function TabelaAvaliacoes({ disciplina }: Props) {
     const { data: avaliacoes = [] } = useQuery<AvaliacoesType[]>({
         queryKey: ["avaliacoes", disciplina],
-        queryFn: () => getAvaliacoes(disciplina).then(r => r.data),
+        queryFn: () => getAvaliacoes(disciplina).then((r) => r.data),
         staleTime: Infinity,
     });
 
+    const totalNotaMaxima = sumField(avaliacoes, "nota_maxima");
+    const totalNota = sumField(avaliacoes, "nota");
+
     return (
         <View style={styles.table}>
-            
-
             <View style={[styles.tableRow, styles.tableHeader]}>
                 <Text style={[styles.cell, styles.col0]}>#</Text>
                 <Text style={[styles.cell, styles.col1]}>Avaliação</Text>
@@ -43,11 +45,9 @@ export function TabelaAvaliacoes({ disciplina }: Props) {
                 <Text style={[styles.cell, styles.col0]}></Text>
                 <Text style={[styles.cell, styles.col1]}></Text>
                 <Text style={[styles.cell, styles.col2]}></Text>
-                <Text style={[styles.cell, styles.col3]}>30</Text>
-                <Text style={[styles.cell, styles.col4]}>30</Text>
+                <Text style={[styles.cell, styles.col3]}>{formatDecimal(totalNotaMaxima)}</Text>
+                <Text style={[styles.cell, styles.col4]}>{formatDecimal(totalNota)}</Text>
             </View>
-
-            
         </View>
     );
 }

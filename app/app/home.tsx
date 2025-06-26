@@ -1,6 +1,6 @@
 import { Aluno } from "@/components/Aluno";
 import { Disciplinas } from "@/components/Disciplinas";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView } from "react-native";
 
 export default function HomeScreen() {
     return (

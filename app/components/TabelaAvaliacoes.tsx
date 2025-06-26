@@ -2,9 +2,8 @@ import { getAvaliacoes } from "@/api/aluno";
 import { AvaliacoesType } from "@/types/aluno";
 import { sumField } from "@/utils/calcUtils";
 import { formatDate, formatDecimal } from "@/utils/formatUtils";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 type Props = {

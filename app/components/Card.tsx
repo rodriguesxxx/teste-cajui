@@ -14,9 +14,6 @@ export function Card({ title, children }: CardProps) {
                 <View style={styles.cardLine} />
             </View>
 
-            {/* o GestureHandlerRootView é componente wrapper, 
-                ele envolve o conteúdo possibilitando gestos como
-                deslizar, arrastar, toque com multiplos dedos  */}
             <GestureHandlerRootView style={styles.cardContent}>{children}</GestureHandlerRootView>
         </View>
     );

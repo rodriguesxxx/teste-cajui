@@ -1,9 +1,7 @@
 import { getMedia } from "@/api/aluno";
-import { MediaType } from "@/types/aluno";
 import { formatDecimal } from "@/utils/formatUtils";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 type Props = {

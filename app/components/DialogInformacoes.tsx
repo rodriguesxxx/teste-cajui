@@ -36,7 +36,7 @@ export function DialogInformacoes({ visible, onClose, disciplina }: Props) {
                             </View>
                             <View style={styles.row}>
                                 <MaterialCommunityIcons name='calendar' size={20} color='#FF9800' style={styles.icon} />
-                                <Text style={styles.label}>Período:</Text>
+                                <Text style={styles.label}>Semestre:</Text>
                                 <Text style={styles.value}>{disciplina.periodo}°</Text>
                             </View>
                             <View style={styles.row}>

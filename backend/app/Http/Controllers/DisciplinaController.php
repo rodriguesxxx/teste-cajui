@@ -27,7 +27,10 @@ class DisciplinaController extends Controller
             ->data($disciplinas)
             ->send();
     }
-
+    
+    /**
+     * Retorno disciplinas aluno
+    */
     public function indexDisciplinasAluno(Request $request): JsonResponse
     {
         $disciplinas = $this->disciplinaService->listarDisciplinasAluno(Auth::user());
@@ -38,6 +41,9 @@ class DisciplinaController extends Controller
             ->send();
     }
 
+    /**
+     * Retorno disciplina específica
+    */
     public function showDisciplinaAluno(Request $request, Disciplina $disciplina): JsonResponse
     {
         $disciplina = $this->disciplinaService->getDisciplinaAluno($disciplina, Auth::user());
@@ -48,6 +54,9 @@ class DisciplinaController extends Controller
             ->send();
     }
 
+    /**
+    * Retorno avaliações aluno
+    */
     public function showAvaliacoesAluno(Request $request, Disciplina $disciplina): JsonResponse
     {
         $avaliacoes = $this->disciplinaService->listarAvaliacoesAlunoPorDisciplina($disciplina, Auth::user());
@@ -58,6 +67,9 @@ class DisciplinaController extends Controller
             ->send();
     }
 
+    /**
+    * Retorno média aluno em determinada disciplina
+    */
     public function showMediaAluno(Request $request, Disciplina $disciplina): JsonResponse
     {
         $media = $this->disciplinaService->calcularMediaAluno($disciplina, Auth::user());

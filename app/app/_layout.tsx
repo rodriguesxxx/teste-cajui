@@ -4,7 +4,7 @@ import { DefaultTheme, NavigationProp, ThemeProvider, useNavigation } from "@rea
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, LogBox, View } from "react-native";
 import "react-native-reanimated";
 import NotFoundScreen from "./+not-found";
 import HomeScreen from "./home";
@@ -15,6 +15,8 @@ import Toast from "react-native-toast-message";
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
+    LogBox.ignoreAllLogs(true);
+
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const [loaded] = useFonts({

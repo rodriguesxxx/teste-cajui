@@ -17,7 +17,7 @@ class DisciplinaFactory extends Factory
             'nome' => $this->faker->word(),
             'curso_id' => Curso::pluck('id')->random(),
             'professor_id' => Professor::pluck('id')->random(),
-            'periodo' => $this->faker->numberBetween(1, 6),
+            'periodo' => $this->faker->numberBetween(1, 2),
             'ementa' => $this->faker->text(),
             'carga_horaria' => $this->faker->randomElement([40, 80, 120])
         ];

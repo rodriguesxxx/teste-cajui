@@ -1,10 +1,10 @@
 import { getDisciplinas } from "@/api/aluno";
 import { DisciplinaType } from "@/types/aluno";
 import { useEffect, useState } from "react";
-import { Alert } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { Card } from "./Card";
 import { CardDisciplina } from "./CardDisciplina";
+import Toast from "react-native-toast-message";
 
 export function Disciplinas() {
     const [disciplinas, setDisciplinas] = useState<DisciplinaType[]>([]);
@@ -15,7 +15,10 @@ export function Disciplinas() {
                 const response = await getDisciplinas();
                 setDisciplinas(response.data);
             } catch (e) {
-                // Alert.alert("Erro", "Não foi possível carregar as disciplinas.");
+                Toast.show({
+                    type: "error",
+                    text1: "Erro ao carregar informações das disciplinas",
+                });
             }
         };
 

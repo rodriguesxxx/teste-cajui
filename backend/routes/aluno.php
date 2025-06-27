@@ -6,10 +6,9 @@ use App\Http\Middleware\JwtMiddleware;
 use App\Models\Disciplina;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(JwtMiddleware::class)->prefix('/aluno')->group(function () {
+Route::middleware(JwtMiddleware::class)->group(function () {
     Route::controller(PerfilController::class)->prefix('/perfil')->group(function () {
         Route::get('/', 'me');
-        Route::post('/editar', 'update');
     });
 
     Route::controller(DisciplinaController::class)->prefix('/disciplinas')->group(function () {

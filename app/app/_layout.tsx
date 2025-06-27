@@ -10,6 +10,8 @@ import NotFoundScreen from "./+not-found";
 import HomeScreen from "./home";
 import LoginScreen from "./login";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Toast from "react-native-toast-message";
+
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
@@ -46,6 +48,7 @@ export default function RootLayout() {
                     <Stack.Screen name='+not-found' component={NotFoundScreen} />
                 </Stack.Navigator>
             </ThemeProvider>
+            <Toast />
         </QueryClientProvider>
     );
 }

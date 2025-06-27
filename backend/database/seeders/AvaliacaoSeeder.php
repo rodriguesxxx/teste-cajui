@@ -3,12 +3,17 @@
 namespace Database\Seeders;
 
 use App\Models\Avaliacao;
+use App\Models\Disciplina;
 use Illuminate\Database\Seeder;
 
 class AvaliacaoSeeder extends Seeder
 {
     public function run(): void
     {
-        Avaliacao::factory(count: 30)->create();
+        Disciplina::all()->each(function ($disciplina) {
+            Avaliacao::factory(3)->create([
+                'disciplina_id' => $disciplina->id,
+            ]);
+        });
     }
 }

@@ -9,6 +9,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { Button } from "react-native-paper";
 import { Card } from "./Card";
 import { getResourceUrl } from "@/utils/urlUtils";
+import Toast from "react-native-toast-message";
 
 export function Aluno() {
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -21,7 +22,10 @@ export function Aluno() {
                 const response = await getInfoAluno();
                 setAluno(response.data);
             } catch (e) {
-                // Alert.alert("Erro", "Não foi possível carregar as informações do aluno.");
+                Toast.show({
+                    type: "error",
+                    text1: "Erro ao carregar informações do aluno",
+                });
             } finally {
                 setLoading(false);
             }
@@ -34,7 +38,10 @@ export function Aluno() {
             await logout();
             await AsyncStorage.removeItem("token");
         } catch (e) {
-            // Alert.alert("Erro", "Erro ao efetuar logout.");
+            Toast.show({
+                type: "error",
+                text1: "Erro ao sair",
+            });
         } finally {
             navigation.navigate("login");
         }
@@ -72,14 +79,14 @@ export function Aluno() {
                     <Text>{aluno?.matricula || "N/A"}</Text>
                 </Text>
 
-                <Button
+                {/* <Button
                     icon='pencil'
                     mode='contained'
                     onPress={() => console.log("open modal")}
                     buttonColor='#007BFF'
                     style={{ marginBottom: 5 }}>
                     Atualizar
-                </Button>
+                </Button> */}
                 <Button icon='logout' mode='contained' onPress={handleLogout} buttonColor='#d32f2f'>
                     Sair
                 </Button>

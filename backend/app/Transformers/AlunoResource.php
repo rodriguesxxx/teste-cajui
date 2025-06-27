@@ -20,6 +20,7 @@ class AlunoResource extends JsonResource
             'nome' => $this->name,
             'email' => $this->email,
             'matricula' => $this->aluno()?->matricula,
+            'foto' => $this->foto,
         ];
     }
 }

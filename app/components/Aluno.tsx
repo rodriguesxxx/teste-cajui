@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { Button } from "react-native-paper";
 import { Card } from "./Card";
+import { getResourceUrl } from "@/utils/urlUtils";
 
 export function Aluno() {
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -51,7 +52,14 @@ export function Aluno() {
         <View>
             <Card title='Informações do aluno'>
                 <View style={styles.profile}>
-                    <Image style={{ width: 150, height: 150 }} source={require(".././assets/images/profile.jpg")} />
+                    <Image
+                        style={styles.profileImage}
+                        source={
+                            aluno?.foto
+                                ? { uri: getResourceUrl(aluno.foto) }
+                                : require(".././assets/images/profile.jpg")
+                        }
+                    />
                 </View>
                 <Text style={{ textAlign: "center", fontWeight: "bold", fontSize: 18, marginBottom: 5 }}>
                     {aluno?.nome || "N/A"}
@@ -82,4 +90,5 @@ export function Aluno() {
 
 const styles = StyleSheet.create({
     profile: { justifyContent: "center", alignItems: "center" },
+    profileImage: { width: 150, height: 150, borderRadius: 75 },
 });

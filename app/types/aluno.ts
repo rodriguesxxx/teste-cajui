@@ -3,6 +3,7 @@ export type InfoAlunoType = {
     nome: string;
     email: string;
     matricula: string;
+    foto: string;
 };
 
 export type DisciplinaType = {

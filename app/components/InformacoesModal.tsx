@@ -10,7 +10,7 @@ type Props = {
     disciplina: DisciplinaType | null;
 };
 
-export function DialogInformacoes({ visible, onClose, disciplina }: Props) {
+export function InformacoesModal({ visible, onClose, disciplina }: Props) {
     if (!disciplina) return null;
 
     return (

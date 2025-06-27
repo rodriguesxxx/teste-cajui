@@ -3,14 +3,14 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { TabelaAvaliacoes } from "./TabelaAvaliacoes";
-import { MediaCard } from "./CardMedia";
-import { DialogInformacoes } from "./DialogInformacoes";
+import { MediaCard } from "./MediaCard";
+import { InformacoesModal } from "./InformacoesModal";
 
 type Props = {
     disciplina: DisciplinaType;
 };
 
-export function CardDisciplina({ disciplina }: Props) {
+export function DisciplinaCard({ disciplina }: Props) {
     const [expanded, setExpanded] = useState(false);
     const [dialogVisible, setDialogVisible] = useState(false);
 
@@ -23,11 +23,7 @@ export function CardDisciplina({ disciplina }: Props) {
                 </View>
             </TouchableOpacity>
 
-            <DialogInformacoes
-                visible={dialogVisible}
-                onClose={() => setDialogVisible(false)}
-                disciplina={disciplina}
-            />
+            <InformacoesModal visible={dialogVisible} onClose={() => setDialogVisible(false)} disciplina={disciplina} />
 
             {expanded && (
                 <View style={styles.detailsContainer}>

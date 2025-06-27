@@ -175,3 +175,5 @@ O frontend do sistema foi desenvolvido utilizando **React Native**, proporcionan
 -   **React Navigation**: Gerenciamento de rotas e navegação entre telas.
 -   **Axios**: Requisições HTTP para a API.
 -   **AsyncStorage**: Armazenamento seguro do token JWT no dispositivo.
+
+[Assista a demonstração](tutoriais/demo.mp4)

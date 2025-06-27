@@ -3,7 +3,7 @@ import { DisciplinaType } from "@/types/aluno";
 import { useEffect, useState } from "react";
 import { FlatList } from "react-native-gesture-handler";
 import { Card } from "./Card";
-import { CardDisciplina } from "./CardDisciplina";
+import { DisciplinaCard } from "./DisciplinaCard";
 import Toast from "react-native-toast-message";
 
 export function Disciplinas() {
@@ -30,7 +30,7 @@ export function Disciplinas() {
             <FlatList
                 data={disciplinas}
                 keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }: { item: DisciplinaType }) => <CardDisciplina disciplina={item} />}
+                renderItem={({ item }: { item: DisciplinaType }) => <DisciplinaCard disciplina={item} />}
                 contentContainerStyle={{ paddingBottom: 16 }}
                 scrollEnabled={false}
                 nestedScrollEnabled={true}

@@ -6,6 +6,8 @@ use App\Services\AuthService;
 use App\Services\DisciplinaService;
 use App\Services\IAuthService;
 use App\Services\IDisciplinaService;
+use App\Services\IPerfilService;
+use App\Services\PerfilService;
 use Illuminate\Support\ServiceProvider;
 
 class ServiceServiceProvider extends ServiceProvider
@@ -15,6 +17,7 @@ class ServiceServiceProvider extends ServiceProvider
         $bindings = [
             IAuthService::class => AuthService::class,
             IDisciplinaService::class => DisciplinaService::class,
+            IPerfilService::class => PerfilService::class,
         ];
 
         foreach ($bindings as $interface => $service) {

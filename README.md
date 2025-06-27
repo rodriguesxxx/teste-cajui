@@ -74,8 +74,7 @@ ipconfig #windows
 php artisan serve --host=<IP_DA_SUA_MAQUINA>
 ```
 
-[![Assista o vídeo do backend](https://img.youtube.com/vi/ID_DO_VIDEO/0.jpg)](tutorials/backend.mp4)
-[Ver vídeo Backend](tutorials/backend.mp4)
+[Assista o tutorial do backend](tutoriais/backend.mp4)
 
 ### Configuração(App):
 
@@ -114,5 +113,4 @@ EXPO_PUBLIC_API_URL=http://<IP>:8000
 npx expo start
 ```
 
-[![Assista o vídeo do frontend](https://img.youtube.com/vi/ID_DO_VIDEO/0.jpg)](tutorials/frontend.mp4)
-[Ver vídeo Frontend](tutorials/frontend.mp4)
+[Assista o tutorial do frontend](tutoriais/frontend.mp4)

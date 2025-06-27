@@ -1,3 +1,5 @@
+[→ Acesse o Relatório do Projeto](RELATORIO.md)
+
 ### Pré-requisitos:
 
 -   [PHP 8+](https://www.php.net/)
@@ -114,3 +116,8 @@ npx expo start
 ```
 
 [Assista o tutorial do frontend](tutoriais/frontend.mp4)
+
+## Informações de Acesso
+
+-   **E-mail:** drp6@aluno.ifnmg.edu.br
+-   **Senha:** aluno@cajui

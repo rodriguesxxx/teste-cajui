@@ -7,6 +7,7 @@ use App\Models\Disciplina;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Http\Response as HttpResponse;
 
 class DisciplinaPolicy
 {
@@ -14,27 +15,25 @@ class DisciplinaPolicy
 
     public function listarDisciplinasAluno(User $user): Response
     {
-
-        $hasPermission = Response::deny();
-
         if ($this->isValidAluno($user->aluno())) {
-            $hasPermission = Response::allow();
+            return Response::allow();
         }
 
-        return $hasPermission;
+        return Response::deny('Usuário não está vinculado a um aluno.', HttpResponse::HTTP_FORBIDDEN);
     }
 
     public function getDisciplinaAluno(User $user, Disciplina $disciplina): Response
     {
-
-        $hasPermission = Response::deny();
-
         $aluno = $user->aluno();
-        if ($this->isValidAluno($aluno) && $disciplina->hasAluno($aluno)) {
-            $hasPermission = Response::allow();
+        if (!$this->isValidAluno($aluno)) {
+            return Response::deny('Usuário não está vinculado a um aluno.', HttpResponse::HTTP_FORBIDDEN);
         }
 
-        return $hasPermission;
+        if (!$disciplina->hasAluno($aluno)) {
+            return Response::deny('A disciplina informada não pertence ao aluno.', HttpResponse::HTTP_FORBIDDEN);
+        }
+
+        return Response::allow();
     }
 
     private function isValidAluno(?Aluno $aluno): bool

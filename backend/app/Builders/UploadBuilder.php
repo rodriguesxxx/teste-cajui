@@ -51,10 +51,6 @@ class UploadBuilder
         $directory = $this->directory ?? '';
         $filename = $this->filename ?? $this->file->hashName();
         
-        // if ($directory && !Storage::disk($disk)->exists($directory)) {
-        //     Storage::disk($disk)->makeDirectory($directory);
-        // }
-
         return $this->file->storeAs($directory, $filename, $disk);
     }
 }
